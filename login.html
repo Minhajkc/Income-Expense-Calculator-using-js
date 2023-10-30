@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(164, 201, 234);
+        }
+        div{
+            background-color: rgb(11, 51, 77);
+            width: 300px;
+            height: 300px;
+            border-radius: 10px;
+            padding: 20px;
+            margin-left: 37%;
+            margin-top: 100px;
+        }
+        input{
+            border-radius: 10px;
+            font-size: 20px;
+            border: none;
+        }
+        #textt{
+
+            margin-left: 20px;
+            
+        }
+        #pass{
+            margin-left: 20px;
+        }
+        button{
+            margin-left: 120px;
+            margin-top: 10px;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            padding-left: 10px;
+
+        }
+        h4{
+            color: white;
+            padding-left: 30px;
+        }
+        p{
+            color: red;
+            padding-left: 30px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div>
+        <h1>
+        </h1>
+        <h4>
+            Username
+        </h4>
+    <input type="text" id="textt"><br>
+    <h4>
+        Password
+    </h4>
+    <input type="password" id="pass"><br>
+    <p id="ppp"></p>
+    <button id="button" onclick="page()">Login</button>
+    
+</div>
+
+
+    <script>
+        var webb = "http://127.0.0.1:5500/Index.html";
+        function page(){
+            input = document.getElementById("textt").value
+            pass = document.getElementById("pass").value
+            if(pass=="1234"){
+                window.open(webb, "-blank");          }
+                else if(pass==""){
+                    document.getElementById("ppp").innerHTML= "Enter a Password*"
+
+                }
+            else{
+                document.getElementById("ppp").innerHTML= "Wrong Password*"
+            }
+        }
+    </script>
+</body>
+</html>

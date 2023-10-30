@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<style>
+    body{
+        background-color: rgb(173, 201, 227);
+    }
+    .all{
+        width: 100%;
+        height: 100px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        margin-top: 40px;
+    }
+    .all h4{
+        padding-top: 10px;
+    }
+    .main{
+        background-color: rgb(41, 15, 114);
+        height: 100px;
+        border-radius: 10px;
+        width: 300px;
+        text-align: center;
+        color: white;
+        margin-left: 100px;
+    }
+    .second{
+        margin-top: 50px;
+        margin-left: 100px;
+        background-color:rgb(23, 67, 137);;
+        width: 310px;
+        height: 130px;
+        padding: 10px;
+        border-radius: 10px;
+    }
+    input{
+        width: 220px;
+        border: 2px solid;
+        border-radius: 30px;
+        height: 30px;
+        margin-left: 40px;
+        font-size: 20px;
+        font-weight: 200px;
+        border-color: green;
+        margin-top: 15px;
+        border: none;
+    }
+    #incomebtn{
+        margin-left: 100px;
+    }
+    .third{
+        margin-left: 100px;
+        margin-top: 50px;
+        background-color: rgb(23, 67, 137);
+        width: 310px;
+        height: 200px;
+        padding: 10px;
+        border-radius: 10px;
+    }
+    .third button{
+        margin-left: 100px;
+    }
+    .main h2{
+        color: rgb(102, 255, 1);
+    }
+    #incometext{
+        color: rgb(0, 217, 255);
+      
+    }
+    #incometext:hover{
+        transform: scale(1.5);
+        color: rgb(115, 255, 0);
+    }
+    .fourth{
+        background-color: rgb(255, 255, 255);
+        width: 290px;
+        height: 380px;
+        margin-top: -380px;
+        margin-left: 616px;
+        border-radius: 10px;
+    }
+    .fourth h2{
+        text-align: center;
+    }
+    table td{
+        color: rgb(195, 11, 30);
+        font-size: 20px;
+        font-variant: small-caps;
+        padding-left: 20px;
+    }
+    #valueTablee td{
+        color: rgb(41, 15, 114);
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        letter-spacing:2px;
+    }
+    th{
+        padding-left: 20px;
+    }
+    .fourthh{
+        background-color: rgb(255, 255, 255);
+        width: 290px;
+        height: 380px;
+        margin-top: -380px;
+        margin-left: 1130px;
+        border-radius: 10px;
+        text-align: center;
+    }
+    .fourth h2{
+        padding-top: 10px;
+    }
+    .fourthh h2{
+        padding-top: 10px;
+    }
+
+    @media screen and (max-width:420px){
+       h4{
+          font-style: italic;
+       }
+        .second{
+            margin-left: 40px;
+            margin-top: 300px;
+            margin-right: -30px;
+       }
+       .third{
+        margin-left: 40px;
+       }
+       .fourth{
+        margin-left: 40px;
+        margin-top: 20px;
+       }
+       .fourthh{
+        margin-left: 40px;
+        margin-top: 50px;
+       }
+       #incomebox{
+           margin-left: 40px;
+       }
+       #spendbox{
+        margin-left: -300px;
+        margin-top: 130px;
+
+       }
+       #balancebox{
+        margin-left: -320px;
+        margin-top: 270px;
+
+       }
+    }
+    
+</style>
+<body>
+    <div class="all">
+      <div class="main" id="incomebox">
+        <h4 >INCOME</h4>
+        <h2 id="incometext">0</h4>
+      </div>
+      <div class="main" id="spendbox">
+        <h4>SPEND</h4>
+        <h2 id="expensetext" class="text-warning">0</h4>
+      </div>
+      <div class="main" id="balancebox">
+        <h4>BALANCE</h4>
+        <h2 id="balancetext">0</h2>
+      </div>
+    </div>
+
+    <div class="second">
+        <input type="text" id="inputt" placeholder=><br><br>
+        <button type="button" id="incomebtn" class="btn btn-primary btn-sm" onclick="inc()" >ADD INCOME</button>
+    </div>
+    <div class="third">
+        <input type="text" id="expinput" placeholder=""><br><br>
+        <input type="number" id="expinputt"><br><br>
+        <button type="button" id="expbtn" class="btn btn-warning btn-sm" onclick="expe()">ADD EXPENSE</button>
+    </div>
+    <div class="fourth">
+        <h2>CATEGORY</h2>
+        <hr>
+
+        <table id="valueTablee">
+            <thead>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+
+        <table id="valueTable">
+            <thead>
+            </thead>
+            <tbody>
+                <th>Spend:</tr>
+            </tbody>
+        </table>
+        
+    </div>
+    <div class="fourthh">
+        <h2>CHART</h2>
+        <hr>
+        <div style="width: 90%; margin: 0 auto;">
+            <canvas id="myPieChart"></canvas>
+        </div>
+        </div>
+    
+
+
+    <script>
+       var income = 0;
+       var expensee = 0;
+       var balance = 0;
+
+
+
+
+        function inc(){
+            incomevalue = document.getElementById("inputt")
+            incomevalue1 = document.getElementById("inputt").value
+            incomevalue2 = parseFloat(incomevalue1)
+            income = income + incomevalue2
+            document.getElementById("incometext").innerHTML= + income
+            incomevalue.value=''
+            update1();
+            balancecat();
+        }
+
+
+        function expe(){
+            expamount = document.getElementById("expinputt")
+            expamount1 = document.getElementById("expinputt").value
+            expamount2 = parseFloat(expamount1)
+            expensee = expensee + expamount2 ;
+            document.getElementById("expensetext").innerHTML= + expensee ;
+            addData();
+            
+
+
+
+            exptextcontent = document.getElementById("expinput")
+            exptextcontent2 = document.getElementById("expinput").value
+            exptextcontent3 = exptextcontent2;
+           
+
+
+            
+            update1();
+            categorylist();
+            if(expensee>income){
+               window.confirm('no enough balance !')
+            }
+            expamount.value=''
+            exptextcontent.value = '';
+
+        }
+            
+           
+        function update1(){
+            balance = income-expensee
+            document.getElementById("balancetext").innerHTML = + balance
+        }
+        function categorylist(){
+            if(expamount1){
+
+                const tableBody = document.querySelector('#valueTable tbody');
+                const newRow = tableBody.insertRow();
+                const newCell = newRow.insertCell(0);
+
+                newCell.textContent = exptextcontent3 + expamount1;
+                
+            }
+        }
+        function balancecat(){
+            if(incomevalue2){
+            const tableBodyy = document.querySelector('#valueTablee tbody');
+                const newRoww = tableBodyy.insertRow();
+                const newCelll = newRoww.insertCell(0);
+                newCelll.textContent = "Amount Added : " +incomevalue2;
+            }
+        }
+        
+       
+// Get the canvas element
+var ctx = document.getElementById('myPieChart').getContext('2d');
+
+// Initial data for the pie chart
+var initialData = {
+labels: [],
+datasets: [
+{
+data: [],
+backgroundColor: [],
+},
+],
+};
+
+var pieChart;
+
+
+function addData() {
+
+exptextcontent2 = document.getElementById("expinput").value
+expamount1 = document.getElementById("expinputt").value
+
+
+if (exptextcontent2 && !isNaN(expamount1)) {
+// Add new data to the chart
+initialData.labels.push(exptextcontent2);
+initialData.datasets[0].data.push(expamount1);
+initialData.datasets[0].backgroundColor.push(getRandomColor());
+
+if (pieChart) {
+// If the chart already exists, update it
+pieChart.update();
+} else {
+// If the chart doesn't exist, create it
+pieChart = new Chart(ctx, {
+type: 'doughnut',
+data: initialData,
+options: {
+responsive: true,
+},
+});
+}
+}
+}
+
+// Function to generate random colors
+function getRandomColor() {
+return '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
+}
+//pieChart.data = initialData;
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</body>
+</html>
